@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:realbajar/screens/properties/propertydetails.dart';
 
 class PropertyListing extends StatelessWidget {
   const PropertyListing({Key key}) : super(key: key);
@@ -38,7 +39,13 @@ class PropertyListing extends StatelessWidget {
                         'Elegant retrear in a quiet Coral Gables setting. This home'),
                     SizedBox(height: 10),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      PropertyDetails("propertyid")));
+                        },
                         child: Text(
                           'More Details >>>',
                           style: TextStyle(color: Colors.grey.shade700),

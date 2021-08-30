@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:realbajar/screens/agents/agentdetails.dart';
 
 class AgentListing extends StatelessWidget {
   const AgentListing({Key key}) : super(key: key);
@@ -101,13 +102,22 @@ class AgentListing extends StatelessWidget {
                                   icon: FaIcon(FontAwesomeIcons.instagram),
                                   iconSize: size.width * .05,
                                   color: Colors.grey.shade700),
-                              Card(
-                                color: Colors.orange,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'More Details',
-                                    style: TextStyle(color: Colors.white),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              AgentDetails('Julia')));
+                                },
+                                child: Card(
+                                  color: Colors.orange,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      'More Details',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
                                   ),
                                 ),
                               )

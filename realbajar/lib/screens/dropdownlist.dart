@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:realbajar/screens/dropdownbuilder.dart';
+import 'package:realbajar/screens/properties/propertydetails.dart';
 
 class DropDownList extends StatelessWidget {
   const DropDownList({Key key}) : super(key: key);
@@ -19,13 +20,20 @@ class DropDownList extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(10.0).copyWith(bottom: 0),
               child: Table(
+                columnWidths: {
+                  0: FlexColumnWidth(.4),
+                  1: FlexColumnWidth(.01),
+                  2: FlexColumnWidth(.4)
+                },
                 children: [
                   TableRow(children: [
                     Text("Property Status"),
+                    Text(''),
                     Text("Property Type")
                   ]),
                   TableRow(children: [
                     DropDownBuilder(['Any', 'For Rent', 'For Sale']),
+                    Text(''),
                     DropDownBuilder([
                       'Any',
                       'Commercial',
@@ -40,8 +48,9 @@ class DropDownList extends StatelessWidget {
                       '- Villa'
                     ])
                   ]),
-                  TableRow(children: [Text(""), Text("")]),
-                  TableRow(children: [Text("All Locations"), Text("")]),
+                  TableRow(children: [Text(""), Text(''), Text("")]),
+                  TableRow(
+                      children: [Text("All Locations"), Text(''), Text("")]),
                   TableRow(children: [
                     DropDownBuilder([
                       'Any',
@@ -53,9 +62,16 @@ class DropDownList extends StatelessWidget {
                       'Pokhara',
                       'Biratnagar'
                     ]),
+                    Text(''),
                     MaterialButton(
                       color: Colors.orange,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    PropertyDetails('Id here')));
+                      },
                       child: Text(
                         'Search',
                         style: TextStyle(color: Colors.white),
@@ -75,9 +91,17 @@ class DropDownList extends StatelessWidget {
                     style: TextStyle(fontSize: 12), textAlign: TextAlign.end),
                 children: [
                   Table(
+                    columnWidths: {
+                      0: FlexColumnWidth(.4),
+                      1: FlexColumnWidth(.01),
+                      2: FlexColumnWidth(.4)
+                    },
                     children: [
-                      TableRow(
-                          children: [Text("Min Price"), Text("Max Price")]),
+                      TableRow(children: [
+                        Text("Min Price"),
+                        Text(''),
+                        Text("Max Price")
+                      ]),
                       TableRow(children: [
                         DropDownBuilder([
                           'Any',
@@ -100,6 +124,7 @@ class DropDownList extends StatelessWidget {
                           'Rs 2,500,000',
                           'Rs 5,000,000'
                         ]),
+                        Text(''),
                         DropDownBuilder([
                           'Any',
                           'Rs 5,000',
@@ -122,8 +147,12 @@ class DropDownList extends StatelessWidget {
                           'Rs 10,000,000'
                         ]),
                       ]),
-                      TableRow(children: [Text(""), Text("")]),
-                      TableRow(children: [Text("Min Beds"), Text("Min Baths")]),
+                      TableRow(children: [Text(""), Text(''), Text("")]),
+                      TableRow(children: [
+                        Text("Min Beds"),
+                        Text(''),
+                        Text("Min Baths")
+                      ]),
                       TableRow(children: [
                         DropDownBuilder([
                           'Any',
@@ -138,6 +167,7 @@ class DropDownList extends StatelessWidget {
                           '9',
                           '10'
                         ]),
+                        Text(''),
                         DropDownBuilder([
                           'Any',
                           '1',
@@ -152,8 +182,12 @@ class DropDownList extends StatelessWidget {
                           '10'
                         ])
                       ]),
-                      TableRow(children: [Text(""), Text("")]),
-                      TableRow(children: [Text("Min Garages"), Text("Agent")]),
+                      TableRow(children: [Text(""), Text(''), Text("")]),
+                      TableRow(children: [
+                        Text("Min Garages"),
+                        Text(''),
+                        Text("Agent")
+                      ]),
                       TableRow(children: [
                         DropDownBuilder([
                           'Any',
@@ -168,26 +202,32 @@ class DropDownList extends StatelessWidget {
                           '9',
                           '10'
                         ]),
-                        DropDownBuilder(
-                            ['Any', 'Realbajar Agent Team', 'John Doe'])
+                        Text(''),
+                        DropDownBuilder(['Any', 'Team Realbajar', 'John Doe'])
                       ]),
-                      TableRow(children: [Text(""), Text("")]),
+                      TableRow(children: [Text(""), Text(''), Text("")]),
                       TableRow(children: [
                         Text("Min Area (sq ft)"),
+                        Text(''),
                         Text("Max Area (sq ft)")
                       ]),
                       TableRow(children: [
                         customtextfields(_controlminarea),
+                        Text(''),
                         customtextfields(_controlmaxarea)
                       ]),
-                      TableRow(children: [Text(""), Text("")]),
-                      TableRow(
-                          children: [Text("Keyword"), Text("Property ID")]),
+                      TableRow(children: [Text(""), Text(''), Text("")]),
                       TableRow(children: [
-                        customtextfields(_controlmaxarea),
-                        customtextfields(_controlkeyword)
+                        Text("Keyword"),
+                        Text(''),
+                        Text("Property ID")
                       ]),
-                      TableRow(children: [Text(""), Text("")]),
+                      TableRow(children: [
+                        customtextfields(_controlkeyword),
+                        Text(''),
+                        customtextfields(_controlpropertyid)
+                      ]),
+                      TableRow(children: [Text(""), Text(''), Text("")]),
                     ],
                   ),
                 ],

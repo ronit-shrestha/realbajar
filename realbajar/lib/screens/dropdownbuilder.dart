@@ -11,21 +11,19 @@ class _DropDownBuilderState extends State<DropDownBuilder> {
   var initvalue = 'Any';
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: DropdownButton(
-        value: initvalue,
-        onChanged: (newValue) {
-          setState(() {
-            initvalue = newValue;
-          });
-        },
-        items: widget.finaldropdownlist
-            .map((value) => DropdownMenuItem(
-                  value: value,
-                  child: Text('$value'),
-                ))
-            .toList(),
-      ),
+    return DropdownButtonFormField(
+      value: initvalue,
+      onChanged: (newValue) {
+        setState(() {
+          initvalue = newValue;
+        });
+      },
+      items: widget.finaldropdownlist
+          .map((value) => DropdownMenuItem(
+                value: value,
+                child: Text('$value'),
+              ))
+          .toList(),
     );
   }
 }
