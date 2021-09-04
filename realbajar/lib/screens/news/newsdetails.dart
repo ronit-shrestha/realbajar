@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:realbajar/functions/buttonfunction.dart';
 import 'package:realbajar/screens/drawer/drawer.dart';
-import 'package:realbajar/screens/featuredproperties/featuredproperties.dart';
 
 class NewsDetails extends StatelessWidget {
   final String newstitle;

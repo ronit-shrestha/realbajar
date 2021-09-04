@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final realbajar = realbajarFromJson(jsonString);
-
 import 'dart:convert';
 
 List<Realbajar> realbajarFromJson(String str) =>

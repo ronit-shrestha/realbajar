@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:realbajar/api/httpservices.dart';
 import 'package:realbajar/screens/drawer/drawer.dart';
 import 'package:realbajar/screens/dropdownlist.dart';
 import 'package:realbajar/screens/featuredproperties/featuredproperties.dart';
@@ -30,6 +31,30 @@ class _HomePageState extends State<HomePage> {
           shrinkWrap: true,
           physics: BouncingScrollPhysics(),
           children: [
+            Container(
+                height: 300,
+                child: FutureBuilder(
+                    future: HttpServices().gethttpservices(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return
+                            // Center(
+                            //   child: CircularProgressIndicator(
+                            //     color: Colors.black,
+                            //   ),
+                            // );
+                            ListView.builder(
+                                itemCount: snapshot.data.length,
+                                itemBuilder: (context, i) {
+                                  return Text(snapshot.data[i].date.toString());
+                                });
+                      } else {
+                        return Center(
+                            child: CircularProgressIndicator(
+                          color: Colors.red,
+                        ));
+                      }
+                    })),
             section1(size, context),
             section2(),
             PropertyListing(),
