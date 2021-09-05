@@ -16,38 +16,40 @@ class _GalleryState extends State<Gallery> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Gallery'),
-        centerTitle: true,
-        actions: [AppbarBackButton().appbarBackButton(context)],
-      ),
-      drawer: RealBajarDrawer(),
-      body: ListView(
-        shrinkWrap: true,
-        physics: BouncingScrollPhysics(),
-        children: [
-          SizedBox(height: 25),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: CupertinoSlidingSegmentedControl(
-                backgroundColor: Colors.grey.shade200,
-                thumbColor: Colors.white,
-                groupValue: groupValue,
-                children: {
-                  0: Text('All'),
-                  1: Text('For Rent'),
-                  2: Text('For Sale')
-                },
-                onValueChanged: (groupValue) {
-                  setState(() {
-                    this.groupValue = groupValue;
-                  });
-                }),
-          ),
-          SizedBox(height: 25),
-          if (groupValue == 0) GalleryBuilder()
-        ],
-      ),
-    );
+        drawer: RealBajarDrawer(),
+        body: CustomScrollView(
+          physics: BouncingScrollPhysics(),
+          slivers: [
+            SliverAppBar(
+              title: Text('Gallery'),
+              centerTitle: true,
+              floating: true,
+              actions: [AppbarBackButton().appbarBackButton(context)],
+            ),
+            SliverList(
+                delegate: SliverChildListDelegate([
+              SizedBox(height: 25),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: CupertinoSlidingSegmentedControl(
+                    backgroundColor: Colors.grey.shade200,
+                    thumbColor: Colors.white,
+                    groupValue: groupValue,
+                    children: {
+                      0: Text('All'),
+                      1: Text('For Rent'),
+                      2: Text('For Sale')
+                    },
+                    onValueChanged: (groupValue) {
+                      setState(() {
+                        this.groupValue = groupValue;
+                      });
+                    }),
+              ),
+              SizedBox(height: 25),
+              if (groupValue == 0) GalleryBuilder()
+            ]))
+          ],
+        ));
   }
 }

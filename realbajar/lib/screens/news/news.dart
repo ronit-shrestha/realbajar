@@ -10,18 +10,18 @@ class News extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('NEWS'),
-          centerTitle: true,
-          actions: [AppbarBackButton().appbarBackButton(context)],
-        ),
         drawer: RealBajarDrawer(),
-        body: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: ListView(
-            shrinkWrap: true,
-            physics: BouncingScrollPhysics(),
-            children: [
+        body: CustomScrollView(
+          physics: BouncingScrollPhysics(),
+          slivers: [
+            SliverAppBar(
+              title: Text('NEWS'),
+              centerTitle: true,
+              actions: [AppbarBackButton().appbarBackButton(context)],
+              floating: true,
+            ),
+            SliverList(
+                delegate: SliverChildListDelegate([
               NewsBuilder(),
               Divider(height: 50),
               newssearchbar(),
@@ -39,8 +39,8 @@ class News extends StatelessWidget {
                 ),
               ),
               DropDownList()
-            ],
-          ),
+            ]))
+          ],
         ));
   }
 

@@ -17,19 +17,15 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          AppbarBackButton().appbarBackButton(context),
-        ],
-        elevation: 0,
-        backgroundColor: Colors.grey.shade300,
-      ),
-      drawer: RealBajarDrawer(),
-      body: SafeArea(
-        child: Container(
-          color: Colors.grey.shade300,
-          child: ListView(
-            children: [
+        backgroundColor: Colors.grey.shade700,
+        drawer: RealBajarDrawer(),
+        body: CustomScrollView(
+          slivers: [
+            SliverAppBar(actions: [
+              AppbarBackButton().appbarBackButton(context),
+            ], backgroundColor: Colors.grey.shade700),
+            SliverList(
+                delegate: SliverChildListDelegate([
               SizedBox(height: MediaQuery.of(context).size.height * .1),
               Container(
                 color: Colors.white,
@@ -62,11 +58,9 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-            ],
-          ),
-        ),
-      ),
-    );
+            ]))
+          ],
+        ));
   }
 
   slidingtext(text) {

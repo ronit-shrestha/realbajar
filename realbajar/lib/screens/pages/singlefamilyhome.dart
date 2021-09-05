@@ -10,31 +10,34 @@ class SingleFamilyHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Single Family Home'),
-        centerTitle: true,
-        actions: [AppbarBackButton().appbarBackButton(context)],
-      ),
-      drawer: RealBajarDrawer(),
-      body: ListView(
-        physics: BouncingScrollPhysics(),
-        children: [
-          PropertyListing(),
-          Divider(height: 75),
-          ListTile(
-            tileColor: Colors.grey.shade700,
-            title: Text('Find Your Home',
-                style: TextStyle(
-                    color: Colors.white, fontWeight: FontWeight.bold)),
-            trailing: Icon(
-              Icons.search,
-              color: Colors.white,
+        drawer: RealBajarDrawer(),
+        body: CustomScrollView(
+          physics: BouncingScrollPhysics(),
+          slivers: [
+            SliverAppBar(
+              title: Text('Single Family Home'),
+              centerTitle: true,
+              actions: [AppbarBackButton().appbarBackButton(context)],
+              floating: true,
             ),
-          ),
-          SizedBox(height: 15),
-          DropDownList()
-        ],
-      ),
-    );
+            SliverList(
+                delegate: SliverChildListDelegate([
+              PropertyListing(),
+              Divider(height: 75),
+              ListTile(
+                tileColor: Colors.grey.shade700,
+                title: Text('Find Your Home',
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold)),
+                trailing: Icon(
+                  Icons.search,
+                  color: Colors.white,
+                ),
+              ),
+              SizedBox(height: 15),
+              DropDownList()
+            ]))
+          ],
+        ));
   }
 }

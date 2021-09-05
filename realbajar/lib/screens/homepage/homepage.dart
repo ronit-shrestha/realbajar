@@ -21,49 +21,50 @@ class _HomePageState extends State<HomePage> {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-        ),
-        drawer: RealBajarDrawer(),
-        body: ListView(
-          shrinkWrap: true,
-          physics: BouncingScrollPhysics(),
-          children: [
-            Container(
-                height: 300,
-                child: FutureBuilder(
-                    future: HttpServices().gethttpservices(),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return
-                            // Center(
-                            //   child: CircularProgressIndicator(
-                            //     color: Colors.black,
-                            //   ),
-                            // );
-                            ListView.builder(
-                                itemCount: snapshot.data.length,
-                                itemBuilder: (context, i) {
-                                  return Text(snapshot.data[i].date.toString());
-                                });
-                      } else {
-                        return Center(
-                            child: CircularProgressIndicator(
-                          color: Colors.red,
-                        ));
-                      }
-                    })),
-            section1(size, context),
-            section2(),
-            PropertyListing(),
-            section3(),
-            section5(),
-            section4()
-          ],
-        ),
-      ),
+          drawer: RealBajarDrawer(),
+          body: CustomScrollView(
+            physics: BouncingScrollPhysics(),
+            slivers: [
+              SliverAppBar(
+                elevation: 0,
+                floating: true,
+                backgroundColor: Colors.transparent,
+              ),
+              SliverList(
+                  delegate: SliverChildListDelegate([
+                // Container(
+                //     height: 300,
+                //     child: FutureBuilder(
+                //         future: HttpServices().gethttpservices(),
+                //         builder: (context, snapshot) {
+                //           if (snapshot.hasData) {
+                //             return
+                //                 // Center(
+                //                 //   child: CircularProgressIndicator(
+                //                 //     color: Colors.black,
+                //                 //   ),
+                //                 // );
+                //                 ListView.builder(
+                //                     itemCount: snapshot.data.length,
+                //                     itemBuilder: (context, i) {
+                //                       return Text(snapshot.data[i].date.toString());
+                //                     });
+                //           } else {
+                //             return Center(
+                //                 child: CircularProgressIndicator(
+                //               color: Colors.red,
+                //             ));
+                //           }
+                //         })),
+                section1(size, context),
+                section2(),
+                PropertyListing(),
+                section3(),
+                section5(),
+                section4()
+              ]))
+            ],
+          )),
     );
   }
 
