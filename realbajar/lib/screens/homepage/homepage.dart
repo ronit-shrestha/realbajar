@@ -32,30 +32,7 @@ class _HomePageState extends State<HomePage> {
               ),
               SliverList(
                   delegate: SliverChildListDelegate([
-                // Container(
-                //     height: 300,
-                //     child: FutureBuilder(
-                //         future: HttpServices().gethttpservices(),
-                //         builder: (context, snapshot) {
-                //           if (snapshot.hasData) {
-                //             return
-                //                 // Center(
-                //                 //   child: CircularProgressIndicator(
-                //                 //     color: Colors.black,
-                //                 //   ),
-                //                 // );
-                //                 ListView.builder(
-                //                     itemCount: snapshot.data.length,
-                //                     itemBuilder: (context, i) {
-                //                       return Text(snapshot.data[i].date.toString());
-                //                     });
-                //           } else {
-                //             return Center(
-                //                 child: CircularProgressIndicator(
-                //               color: Colors.red,
-                //             ));
-                //           }
-                //         })),
+                // apitest(),
                 section1(size, context),
                 section2(),
                 PropertyListing(),
@@ -66,6 +43,33 @@ class _HomePageState extends State<HomePage> {
             ],
           )),
     );
+  }
+
+  apitest() {
+    return Container(
+        height: 300,
+        child: FutureBuilder(
+            future: HttpServices().gethttpservices(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return
+                    // Center(
+                    //   child: CircularProgressIndicator(
+                    //     color: Colors.black,
+                    //   ),
+                    // );
+                    ListView.builder(
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (context, i) {
+                          return Text(snapshot.data[i].date.toString());
+                        });
+              } else {
+                return Center(
+                    child: CircularProgressIndicator(
+                  color: Colors.red,
+                ));
+              }
+            }));
   }
 
   section1(size, context) {

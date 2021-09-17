@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:realbajar/screens/addproperty/addproperty.dart';
 import 'package:realbajar/screens/agencies/agencies.dart';
 import 'package:realbajar/screens/agents/agents.dart';
 import 'package:realbajar/screens/contact/contact.dart';
@@ -162,6 +163,14 @@ class RealBajarDrawer extends StatelessWidget {
                 onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => Login()));
+                },
+              ),
+              ListTile(
+                selectedTileColor: Colors.orange,
+                title: Text('Add Your Property/ies'),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => AddProperty()));
                 },
               ),
             ],
